@@ -70,7 +70,7 @@ class S3Bucket:
         :return: sample
         :rtype: list
         """
-        print("Generating sample from object...")
+        # print("Generating sample from object...")
         try:
             sample = list(np.random.choice(self.keys, n))
 
@@ -92,7 +92,7 @@ class S3Bucket:
         """
 
         try:
-            print("  Downloading: ", url)
+            print("  downloading from url: ", url)
             image = requests.get(url, stream=True, timeout=3)  # stream image from url
             self.bucket.put_object(Key=key, Body=image.raw.read())  # upload to s3
 
@@ -102,11 +102,26 @@ class S3Bucket:
 
             return False
 
+    def download_file(self, key, file_name):
+        """
+        download file image
+
+        :param key:
+        :type key:
+        :param file_name:
+        :type file_name:
+        :return:
+        :rtype:
+        """
+        print(f"   downloading from bucket: {key}")
+        with open(file_name, 'wb') as data:
+            self.bucket.download_fileobj(key, data)
+
+
+
 
 def main():
     bucket = S3Bucket('doodle-bot')
-    # bucket.connect()
-    # bucket.get_objects()
     filenames = bucket.keys
     print(len(filenames))
 

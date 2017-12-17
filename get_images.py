@@ -1,7 +1,7 @@
 import os
 import string
 from nltk.corpus import wordnet
-from s3_access.s3_access import S3Bucket
+from s3.bucket import S3Bucket
 from imagenet_downloads.image_downloads import get_image_urls
 
 
@@ -24,8 +24,11 @@ def get_images(bucket, object):
         for i in string.whitespace:
             url = url.replace(i, '')  # drop whitespace characters
         if url:
-            key = f"images/{object}/{url.split('/')[-1]}"  # construct key
+            split_url = url.split('/')
+            key = f"images/{object}/{split_url[-1]}"  # construct key
+
             _, extension = os.path.splitext(key)  # get file extension
+
             if key not in existing_images and extension == ".jpg":  # skip existing images and non-jpg images
                 bucket.download_image(key, url)
             else:
