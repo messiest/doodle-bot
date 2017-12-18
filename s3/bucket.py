@@ -114,10 +114,11 @@ class S3Bucket:
         :rtype:
         """
         print(f"   downloading from bucket: {key}")
-        with open(file_name, 'wb') as data:
-            self.bucket.download_fileobj(key, data)
-
-
+        try:
+            with open(file_name, 'wb') as data:
+                self.bucket.download_fileobj(key, data)
+        except FileNotFoundError:
+            pass
 
 
 def main():

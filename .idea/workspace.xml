@@ -2,15 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aed86c59-7731-4272-a2f1-397627e91547" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/get_images.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/imagenet_downloads/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/imagenet_downloads/image_downloads.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/s3_access/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/s3_access/s3_access.py" />
-      <change beforePath="$PROJECT_DIR$/.idea/doodle-bot.iml" afterPath="$PROJECT_DIR$/.idea/doodle-bot.iml" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/sampler.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/sketch.py" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
+      <change beforePath="$PROJECT_DIR$/build_model.py" afterPath="$PROJECT_DIR$/build_model.py" />
+      <change beforePath="$PROJECT_DIR$/get_images.py" afterPath="$PROJECT_DIR$/get_images.py" />
+      <change beforePath="$PROJECT_DIR$/imagenet_downloads/image_downloads.py" afterPath="$PROJECT_DIR$/imagenet_downloads/image_downloads.py" />
+      <change beforePath="$PROJECT_DIR$/s3/bucket.py" afterPath="$PROJECT_DIR$/s3/bucket.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -21,11 +19,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="s3_access.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/s3_access/s3_access.py">
+      <file leaf-file-name="bucket.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/s3/bucket.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2600">
-              <caret line="100" column="17" lean-forward="false" selection-start-line="100" selection-start-column="17" selection-end-line="100" selection-end-column="17" />
+            <state relative-caret-position="3146">
+              <caret line="121" column="0" lean-forward="true" selection-start-line="121" selection-start-column="0" selection-end-line="121" selection-end-column="0" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -33,11 +31,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="get_images.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/get_images.py">
+      <file leaf-file-name="sampler.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/sampler.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="16" column="29" lean-forward="true" selection-start-line="16" selection-start-column="29" selection-end-line="16" selection-end-column="29" />
+            <state relative-caret-position="-214">
+              <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
@@ -45,11 +43,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/README.md">
+      <file leaf-file-name="word_tree.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/word_tree.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="9" column="1" lean-forward="false" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
+            <state relative-caret-position="78">
+              <caret line="3" column="26" lean-forward="false" selection-start-line="3" selection-start-column="26" selection-end-line="3" selection-end-column="26" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="sketch.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/sketch.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="624">
+              <caret line="27" column="21" lean-forward="false" selection-start-line="27" selection-start-column="21" selection-end-line="27" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -65,6 +73,17 @@
       </list>
     </option>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>download_file</find>
+      <find>get_image_urls</find>
+      <find>image_downloads</find>
+      <find>Getting</find>
+      <find>print</find>
+      <find>getting</find>
+      <find>downloading</find>
+    </findStrings>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -78,11 +97,19 @@
         <option value="$PROJECT_DIR$/image_downloads.py" />
         <option value="$PROJECT_DIR$/s3_access/__init__.py" />
         <option value="$PROJECT_DIR$/imagenet_downloads/__init__.py" />
-        <option value="$PROJECT_DIR$/imagenet_downloads/image_downloads.py" />
         <option value="$PROJECT_DIR$/get_wnid.py" />
         <option value="$PROJECT_DIR$/s3_access/s3_access.py" />
+        <option value="$PROJECT_DIR$/sketch_pad.py" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/get_images.py" />
+        <option value="$PROJECT_DIR$/imagenet_downloads/image_downloads.py" />
+        <option value="$PROJECT_DIR$/s3/bucket.py" />
+        <option value="$PROJECT_DIR$/build_model.py" />
+        <option value="$PROJECT_DIR$/sketch.py" />
+        <option value="$PROJECT_DIR$/sampler.py" />
+        <option value="$PROJECT_DIR$/image_net.py" />
+        <option value="$PROJECT_DIR$/word_net.py" />
       </list>
     </option>
   </component>
@@ -105,7 +132,22 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="Scope">
+        <subPane subId="Project Files">
+          <expand>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="doodle-bot" type="cbb8eebc:String" user="doodle-bot" />
+            </path>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="doodle-bot" type="cbb8eebc:String" user="doodle-bot" />
+              <item name="imagenet_downloads" type="cbb8eebc:String" user="imagenet_downloads" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -122,7 +164,7 @@
             <path>
               <item name="doodle-bot" type="b2602c69:ProjectViewProjectNode" />
               <item name="doodle-bot" type="462c0819:PsiDirectoryNode" />
-              <item name="s3_access" type="462c0819:PsiDirectoryNode" />
+              <item name="s3" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -154,8 +196,26 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.get_images (1)">
-    <configuration name="app" type="PythonConfigurationType" factoryName="Python" temporary="true">
+  <component name="RunManager" selected="Python.word_net">
+    <configuration name="bucket" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/s3" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="doodle-bot" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/s3/bucket.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <configuration name="build_model" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -167,13 +227,13 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="doodle-bot" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/app.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/build_model.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
-    <configuration name="get_images (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="sampler" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -185,13 +245,13 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="doodle-bot" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/get_images.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/sampler.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
-    <configuration name="get_images" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="sketch" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -203,42 +263,44 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="doodle-bot" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/get_wnid.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/sketch.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
-    <configuration name="image_downloads" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="word_net" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/imagenet_downloads" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="doodle-bot" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/imagenet_downloads/image_downloads.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/word_tree.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
-    <list size="4">
-      <item index="0" class="java.lang.String" itemvalue="Python.app" />
-      <item index="1" class="java.lang.String" itemvalue="Python.get_images" />
-      <item index="2" class="java.lang.String" itemvalue="Python.get_images (1)" />
-      <item index="3" class="java.lang.String" itemvalue="Python.image_downloads" />
+    <list size="5">
+      <item index="0" class="java.lang.String" itemvalue="Python.build_model" />
+      <item index="1" class="java.lang.String" itemvalue="Python.bucket" />
+      <item index="2" class="java.lang.String" itemvalue="Python.sketch" />
+      <item index="3" class="java.lang.String" itemvalue="Python.sampler" />
+      <item index="4" class="java.lang.String" itemvalue="Python.word_net" />
     </list>
     <recent_temporary>
-      <list size="4">
-        <item index="0" class="java.lang.String" itemvalue="Python.get_images (1)" />
-        <item index="1" class="java.lang.String" itemvalue="Python.image_downloads" />
-        <item index="2" class="java.lang.String" itemvalue="Python.get_images" />
-        <item index="3" class="java.lang.String" itemvalue="Python.app" />
+      <list size="5">
+        <item index="0" class="java.lang.String" itemvalue="Python.word_net" />
+        <item index="1" class="java.lang.String" itemvalue="Python.sampler" />
+        <item index="2" class="java.lang.String" itemvalue="Python.sketch" />
+        <item index="3" class="java.lang.String" itemvalue="Python.build_model" />
+        <item index="4" class="java.lang.String" itemvalue="Python.bucket" />
       </list>
     </recent_temporary>
   </component>
@@ -256,6 +318,14 @@
       <option name="presentableId" value="Default" />
       <updated>1513176900452</updated>
     </task>
+    <task id="LOCAL-00001" summary="added image sampling from s3 bucket">
+      <created>1513543067536</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1513543067536</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -285,8 +355,14 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="added image sampling from s3 bucket" />
+    <option name="LAST_COMMIT_MESSAGE" value="added image sampling from s3 bucket" />
+  </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
@@ -411,7 +487,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/s3_access/__init__.py">
+    <entry file="file://$PROJECT_DIR$/s3/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -443,41 +519,96 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/imagenet_downloads/image_downloads.py">
+    <entry file="file://$PROJECT_DIR$/sketch_pad.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="283">
-          <caret line="38" column="8" lean-forward="false" selection-start-line="38" selection-start-column="8" selection-end-line="38" selection-end-column="8" />
-          <folding>
-            <element signature="e#0#10#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/s3_access/s3_access.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2600">
-          <caret line="100" column="17" lean-forward="false" selection-start-line="100" selection-start-column="17" selection-end-line="100" selection-end-column="17" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="130">
+          <caret line="5" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="9" column="1" lean-forward="false" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
+        <state relative-caret-position="0">
+          <caret line="0" column="43" lean-forward="false" selection-start-line="0" selection-start-column="43" selection-end-line="0" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/images/academic_gown-academic_robe-judges_robe/bachelorgown.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1652">
+          <caret line="9" column="31" lean-forward="true" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="31" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/get_images.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="16" column="29" lean-forward="true" selection-start-line="16" selection-start-column="29" selection-end-line="16" selection-end-column="29" />
+        <state relative-caret-position="104">
+          <caret line="4" column="32" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imagenet_downloads/image_downloads.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-988">
+          <caret line="133" column="121" lean-forward="false" selection-start-line="133" selection-start-column="121" selection-end-line="133" selection-end-column="121" />
+          <folding>
+            <element signature="e#0#10#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build_model.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="78">
+          <caret line="23" column="35" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="134" selection-end-column="0" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/s3/bucket.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3146">
+          <caret line="121" column="0" lean-forward="true" selection-start-line="121" selection-start-column="0" selection-end-line="121" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sampler.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-214">
+          <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sketch.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="624">
+          <caret line="27" column="21" lean-forward="false" selection-start-line="27" selection-start-column="21" selection-end-line="27" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/word_tree.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="78">
+          <caret line="3" column="26" lean-forward="false" selection-start-line="3" selection-start-column="26" selection-end-line="3" selection-end-column="26" />
+          <folding />
         </state>
       </provider>
     </entry>

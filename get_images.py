@@ -14,11 +14,19 @@ OBJECT = 'corgi'
 
 
 def get_images(bucket, object):
+    """
+    save image file to bucket from url
+
+    :param bucket:
+    :type bucket:
+    :param object:
+    :type object:
+    :return:
+    :rtype:
+    """
     bucket = S3Bucket(bucket)
     existing_images = bucket.keys
     urls = get_image_urls(object)
-
-    print(type(urls))
 
     for url in urls:
         for i in string.whitespace:
@@ -30,6 +38,7 @@ def get_images(bucket, object):
             _, extension = os.path.splitext(key)  # get file extension
 
             if key not in existing_images and extension == ".jpg":  # skip existing images and non-jpg images
+                print(f"{key}")
                 bucket.download_image(key, url)
             else:
                 print(f"{key} already exists.")

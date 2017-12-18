@@ -20,7 +20,7 @@ def get_image_urls(search_item):
     :type search_item: str
     """
 
-    print("Getting image urls...")
+    # print("Getting image urls...")
     url = "http://www.image-net.org/search?q={}".format(search_item)                    # search image by wnid
     html = requests.get(url)                                                            # url connect
     soup = BeautifulSoup(html.text, 'lxml')                                             # create soup object
@@ -41,12 +41,11 @@ def get_image_urls(search_item):
             html = requests.get(url)                                                        # html for search
             urls = (image_url for image_url in html.text.split('\r\n'))
             for img_url in urls:
-                # image_urls.append(img_url)
-                yield img_url
+                image_urls.append(img_url)
         except:
             pass
 
-    # return image_urls
+    return image_urls
 
 
 def make_folder(folder_name):
@@ -66,7 +65,7 @@ def make_folder(folder_name):
 
 def url_to_image(url):
     """
-        download image from url
+    download image from url
 
     :param url: image url
     :type url: str
@@ -85,7 +84,7 @@ def url_to_image(url):
 
 def resize(image, image_size):
     """
-        resize images
+    resize images
 
     :param image_file: jpg file of image
     :type image_file: str
@@ -132,8 +131,8 @@ def get_images(search, num_images=1000):
             file_path = "images/{}/{}".format(search, file)                              # path for image file
             if not os.path.exists(file_path):
                 try:                                                                     # only use .jpg images
-                    res = resize(image, 448)                                             # resize as per Redmon et. al.
-                    cv2.imwrite(file_path, res)                                          # save image
+                    # res = resize(image, 448)                                             # resize as per Redmon et. al.
+                    cv2.imwrite(file_path, image)                                          # save image
                     total_images += 1                                                    # increment total images
                 except:
                     continue
