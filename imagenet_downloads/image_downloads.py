@@ -7,7 +7,11 @@ import os
 import cv2
 import ast
 import itertools
+import nltk
 
+from s3.bucket import S3Bucket
+
+# bucket = S3Bucket('doodle-bot', printer=True)
 
 IMG_PATH = "images/"
 
@@ -100,55 +104,45 @@ def resize(image, image_size):
     return resized
 
 
-def get_images(search, num_images=1000):
+def get_images(search, num_images=None):
     """
-        search for images on ImageNet, writing images to disk
+    search for images on ImageNet, write images to s3
 
     :param search: term to search ImageNet for
     :type search: str
     :param num_images: total number of images to download
     :type num_images: int
     """
+    if isinstance(search, nltk.corpus.reader.wordnet.Synset):
+        search = search.name().split('.')[0].replace('_', ' ')                           # get object name from synset
+
     print("\nSearching for {} images...".format(search))
     search_url = search.replace(' ', '+').replace(',', '%2C').replace("'", "%27")        # formatted for search url
     search = search.replace(', ', '-').replace(' ', '_').replace("'", "")                # formatted for file system
 
-    make_folder(search)                                                                  # create image folder
+    # make_folder(search)                                                                  # create image folder
 
-    image_urls = get_image_urls(search_url)                                              # get list of image urls
-    total_images = len(os.listdir(IMG_PATH + search + "/"))                              # number of existing images
-    print("  Existing images: {}".format(total_images))
+    image_urls = [url for url in get_image_urls(search_url)]                                  # get list of image urls
+    print("  {} image urls found".format(len(image_urls)))
 
-    for url in itertools.islice(image_urls, total_images, None):                         # start with last used url
-        if total_images >= num_images:
+    for i, url in enumerate(image_urls):                         # start with last used url
+        if i == num_images:
             break
-        image = url_to_image(url)
-        if image != "ERROR":
-            file = url.split('/')[-1]                                                    # image file name
-            if file.split('.')[-1] == "cpp":                                             # skip C++ files
-                continue
-            print("  ", file)
-            file_path = "images/{}/{}".format(search, file)                              # path for image file
-            if not os.path.exists(file_path):
-                try:                                                                     # only use .jpg images
-                    # res = resize(image, 448)                                             # resize as per Redmon et. al.
-                    cv2.imwrite(file_path, image)                                          # save image
-                    total_images += 1                                                    # increment total images
-                except:
-                    continue
-            else:
-                print("Duplicate Image: {}".format(file))                                # skip if the file exists
-                continue
-        else:
+        file = url.split('/')[-1]                                # image file name
+        if file.split('.')[-1] != "jpg":           # skip non jpg
             continue
+        print(f" {i+1} - {file}")
+        key = "images/{}/{}".format(search, file)  # path for image file
 
-        if not total_images % 10:
-            print("\nTotal {} Images: {}".format(search, total_images))                  # output every 10 images
+        yield key, url, search
+
+        # bucket.download_image(key, url, search)
+
 
 
 def image_search(search_terms, images=1000):
     """
-        perform image search for provided list of WNIDs
+    perform image search for provided list of WNIDs
 
     :param search_terms: search terms
     :type search_terms: list
@@ -159,34 +153,3 @@ def image_search(search_terms, images=1000):
         if search not in os.listdir("images/") or len(os.listdir("images/")) < images:  # ignore populated categories
             get_images(search, num_images=images)                                       # get the images
 
-
-def main(num_images, sample=None, member=None):
-    """
-        main method of the image downloader
-
-    :param num_images: total images to download per category
-    :type num_images: int
-    :param sample: number of categories to sample
-    :type sample: int
-    :param member: team member name
-    :type member: str
-    """
-    print("Starting image download...")
-    if member:
-        synsets = get_synsets()                                            # search for member's images
-    else:
-        print("Gathering from all synsets...")
-        synsets = get_synsets()                                                         # search for all images
-
-    np.random.shuffle(synsets)                                                          # randomize search term order
-    if sample:
-        synsets = np.random.choice(synsets, sample)                                     # random sample of choices
-    image_search(synsets, images=num_images)                                            # run image search
-    print("Done.")
-
-
-if __name__ == "__main__":
-    try:
-        main(sys.argv[1], sample=sys.argv[2])                                           # allow command line input
-    except:
-        main(10000, 1)                                                                  # execute whole script

@@ -1,10 +1,12 @@
 import os
 import string
 import numpy as np
-from imagenet_downloads.image_downloads import get_image_urls
+import imagenet_downloads.image_downloads as img
 from get_images import get_images
 from nltk.corpus import wordnet as wn
 from s3.bucket import S3Bucket
+from word_tree.word_tree import build_tree
+
 
 
 """
@@ -28,42 +30,43 @@ class ImageSampler:
         if not os.path.exists(dir):
             os.makedirs(dir)
 
-    def sample_synsets(self, n=10, root=None):
-        sample = []
+    def get_image_categories(self, support_class, root_class, n=10):
+        """
+        Get images that aren't in the base class, but isolated by the support class.
 
-        if root:
+        """
+        support = build_tree(support_class)
+        root = build_tree(root_class)
 
-            synsets =
-        else:
-            synsets = list(wn.all_synsets('n'))
-        while len(sample) < n:
-            s = np.random.choice(synsets, 1)[0]
-            if s.name() != self.name and s not in sample:
-                sample.append(s)
+        not_positive = [i for i in root if i not in support]
+        positive = list(set(np.random.choice(support, n)))
 
-        return sample
+        not_positive = list(set(np.random.choice(not_positive, n)))
 
-    def get_object_tree(self, synset):
+        return positive, not_positive
 
-        hypo = lambda s: s.hyponyms()
-        hyper = lambda s: s.hypernyms()
+    def fetch_images(self, base=True):
 
-        hyponyms = list(synset.closure(hypo))
-        hypernyms = list(synset.closure(hyper))
+        _, sample = self.get_image_categories('dog.n.01', 'vertebrate.n.01', 100)
 
-        print(f"{hyponyms}, {hypernyms}")
+        existing_images = self.source.get_keys()
+
+        for s in sample:
+            if base:
+                s = self.name
+            for key, url, tag in img.get_images(s, num_images=None):
+                if key not in existing_images:
+                    self.source.download_image(key, url, tag)
+                else:
+                    print("File already exists.")
+
+
 
 def main():
     print("In main()...")
     sampler = ImageSampler('corgi', bucket=BUCKET)
-    sample = sampler.sample_synsets(10)
+    sampler.fetch_images(base=False)
 
-    for s in sample:
-        sampler.get_object_tree(s)
-        name = s.name().split('.')[0]
-        name_ = name.replace('_', ' ')
-
-        print(f"Name: {name}, {name_}")
 
 
 if __name__ == "__main__":

@@ -35,19 +35,16 @@ def clean(synset_name):
     return name
 
 
-def main(root=OBJECT):
+def build_tree(root=OBJECT):
     object = wn.synset(root)
     word_tree = WordTree(object)
 
-    objects = list(clean(i.name()) for i in node_recurse_generator(word_tree))
-
-    for i in objects:
-        print(i)
+    objects = list(i for i in node_recurse_generator(word_tree))
 
     return objects
 
 
 if __name__ == "__main__":
-    x = main()
+    x = build_tree()
 
     print(x)

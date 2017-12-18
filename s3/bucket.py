@@ -79,7 +79,7 @@ class S3Bucket:
 
         return sample
 
-    def download_image(self, key, url):
+    def download_image(self, key, url, tag):
         """
         download an image to an s3 bucket
 
@@ -92,14 +92,14 @@ class S3Bucket:
         """
 
         try:
-            print("  downloading from url: ", url)
+            print("\tdownloading from url: ", url)
             image = requests.get(url, stream=True, timeout=3)  # stream image from url
-            self.bucket.put_object(Key=key, Body=image.raw.read())  # upload to s3
+            self.bucket.put_object(Key=key, Body=image.raw.read(), Tagging=f"object={tag}")  # upload to s3
 
             return True
 
-        except:  # requests.exceptions.ReadTimeout or urllib3.exceptions.ReadTimeoutError:
-
+        except:
+            print("image did not save")
             return False
 
     def download_file(self, key, file_name):

@@ -1,37 +1,15 @@
-import numpy as np
+import sampler as S
+import imagenet_downloads.image_downloads as img
 
-from nltk.corpus import wordnet as wn
-from itertools import islice
+sampler = S.ImageSampler('corgi')
 
+_, sample = sampler.get_image_categories('dog.n.01', 'vertebrate.n.01', 100)
 
-def get_hyponyms(synset):
-    hypo = lambda s: s.hyponyms()
-    hyponyms = list(synset.closure(hypo))
+for i in sample:
+    print(i)
 
-    return hyponyms
-
-def get_hypernyms(synset):
-    hyper = lambda s: s.hypernyms()
-    hypernyms = list(synset.closure(hyper))
-
-    return hypernyms
+    for a, b, c in img.get_images(i, num_images=5):
+        print(a, b, c)
 
 
-# TODO (@messiest) generate the WordNet tree
-
-def main(n=1):
-    object = wn.synsets('corgi').pop()
-    synsets = list(wn.all_synsets('n'))
-    np.random.shuffle(synsets)
-    synsets_ = (i for i in synsets)
-    i = 1
-    for s in synsets_:
-        if object in get_hyponyms(s):
-            print(f"Hyponyms: {s}")
-        if object in get_hypernyms(s):
-            print(f"Hypernyms: {s}")
-        i += 1
-
-
-if __name__ == "__main__":
-    main(500)
+    quit()
