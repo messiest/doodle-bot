@@ -1,20 +1,14 @@
 import sys
 import requests
-import urllib
 from bs4 import BeautifulSoup
 import numpy as np
 import os
 import cv2
-import ast
-import itertools
 import nltk
 
 from s3.bucket import S3Bucket
 
-# bucket = S3Bucket('doodle-bot', printer=True)
-
 IMG_PATH = "images/"
-
 
 def get_image_urls(search_item):
     """
@@ -123,7 +117,8 @@ def get_images(search, num_images=None):
     # make_folder(search)                                                                  # create image folder
 
     image_urls = [url for url in get_image_urls(search_url)]                                  # get list of image urls
-    print("  {} image urls found".format(len(image_urls)))
+    total_urls = len(image_urls)
+    print("  {} image urls found".format(total_urls))
 
     for i, url in enumerate(image_urls):                         # start with last used url
         if i == num_images:
@@ -131,13 +126,12 @@ def get_images(search, num_images=None):
         file = url.split('/')[-1]                                # image file name
         if file.split('.')[-1] != "jpg":           # skip non jpg
             continue
-        print(f" {i+1} - {file}")
+        print(f" {i+1}/{total_urls} - {file}")
         key = "images/{}/{}".format(search, file)  # path for image file
 
         yield key, url, search
 
         # bucket.download_image(key, url, search)
-
 
 
 def image_search(search_terms, images=1000):

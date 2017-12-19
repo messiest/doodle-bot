@@ -2,7 +2,7 @@ import os
 import string
 from nltk.corpus import wordnet
 from s3.bucket import S3Bucket
-from imagenet_downloads.image_downloads import get_image_urls
+from imagenet.image_downloads import get_image_urls
 
 
 """

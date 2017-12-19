@@ -1,17 +1,13 @@
+"""
+Various sampler utilities
+"""
 import os
-import string
 import numpy as np
-import imagenet_downloads.image_downloads as img
-from get_images import get_images
+import imagenet.downloads as img
 from nltk.corpus import wordnet as wn
 from s3.bucket import S3Bucket
 from word_tree.word_tree import build_tree
 
-
-
-"""
-This file constructs the classifier model.
-"""
 
 BUCKET = 'doodle-bot'
 
@@ -30,43 +26,37 @@ class ImageSampler:
         if not os.path.exists(dir):
             os.makedirs(dir)
 
-    def get_image_categories(self, support_class, root_class, n=10):
+    def get_image_categories(self, root_class, support_class=None, n=100):
         """
         Get images that aren't in the base class, but isolated by the support class.
-
         """
-        support = build_tree(support_class)
-        root = build_tree(root_class)
+        sample = build_tree(root_class)
+        if support_class:
+            print(f"Removing base class for support: {support_class}")
+            support = build_tree(support_class)
+            sample = [i for i in sample if i not in support]
+        sample = list(set(np.random.choice(sample, n)))
 
-        not_positive = [i for i in root if i not in support]
-        positive = list(set(np.random.choice(support, n)))
+        return sample
 
-        not_positive = list(set(np.random.choice(not_positive, n)))
-
-        return positive, not_positive
-
-    def fetch_images(self, base=True):
-
-        _, sample = self.get_image_categories('dog.n.01', 'vertebrate.n.01', 100)
-
+    def gather_images(self, base=True):
+        sample = self.get_image_categories('vertebrate.n.01', 'dog.n.01', 1000)
         existing_images = self.source.get_keys()
-
         for s in sample:
             if base:
                 s = self.name
-            for key, url, tag in img.get_images(s, num_images=None):
+            for key, url, tag in img.get_images(s):
                 if key not in existing_images:
                     self.source.download_image(key, url, tag)
                 else:
                     print("File already exists.")
 
 
-
 def main():
-    print("In main()...")
+    print("Running sampler.main()...")
     sampler = ImageSampler('corgi', bucket=BUCKET)
-    sampler.fetch_images(base=False)
-
+    # sampler.gather_images(base=True)
+    sampler.gather_images(base=False)
 
 
 if __name__ == "__main__":

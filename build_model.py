@@ -1,7 +1,7 @@
 import os
 import string
 import numpy as np
-from imagenet_downloads.image_downloads import get_image_urls
+from imagenet.image_downloads import get_image_urls
 from get_images import get_images
 from nltk.corpus import wordnet as wn
 from s3.bucket import S3Bucket

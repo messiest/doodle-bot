@@ -14,7 +14,7 @@ class WordTree(object):
             self.children = synset.hyponyms()
 
     @property
-    def child_elements(self):
+    def child_nodes(self):
         return [WordTree(a) for a in self.children]
 
     @property
@@ -24,7 +24,7 @@ class WordTree(object):
 
 def node_recurse_generator(node):
     yield node.value
-    for n in node.child_elements:
+    for n in node.child_nodes:
         yield from node_recurse_generator(n)
 
 
