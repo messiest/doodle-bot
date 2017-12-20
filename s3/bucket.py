@@ -2,7 +2,6 @@ import numpy as np
 import boto3
 import botocore
 import requests
-import urllib3
 
 
 class S3Bucket:
