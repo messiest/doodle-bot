@@ -17,7 +17,7 @@ def get_image_urls(search_item):
     :type search_item: str
     """
 
-    # print("Getting image urls...")
+    print(f"Getting {search_item} image urls...")
     url = "http://www.image-net.org/search?q={}".format(search_item)                    # search image by wnid
     html = requests.get(url)                                                            # url connect
     soup = BeautifulSoup(html.text, 'lxml')                                             # create soup object
@@ -26,10 +26,13 @@ def get_image_urls(search_item):
         for a in search.findAll(name='a'):                                              # find href tag
             try:                                                                        # prevent breaking
                 tags.append(a['href'].split('?')[1])                                    # href w/ wnid link
+                break                                                                   # only get first wnid
             except IndexError:
                 pass
 
     image_urls = []
+
+    print("TAGS: ", tags)
 
     for tag in tags:
         # print(f"tag: {tag}")
@@ -54,35 +57,17 @@ def url_to_image(url):
     :return: image
     :rtype: OpenCV image
     """
-    while True:
-        try:
-            resp = requests.get(url, timeout=3, stream=True)                             # break in case of a load error
-            image = np.asarray(bytearray(resp.raw.read()), dtype="uint8")                # convert to numpy array
-            image = cv2.imdecode(image, cv2.IMREAD_COLOR)                                # read the color image
-            return image                                                                 # return the image
-        except requests.exceptions.ReadTimeout:
-            return "ERROR"                                                               # error return
+    # while True:  # why?
+    try:
+        resp = requests.get(url, timeout=3, stream=True)                             # break in case of a load error
+        image = np.asarray(bytearray(resp.raw.read()), dtype="uint8")                # convert to numpy array
+        image = cv2.imdecode(image, cv2.IMREAD_COLOR)                                # read the color image
+        return image                                                                 # return the image
+    except requests.exceptions.ReadTimeout:
+        return "ERROR"                                                               # error return
 
 
-def resize(image, image_size):
-    """
-    resize images
-
-    :param image_file: jpg file of image
-    :type image_file: str
-    :param image_size: square size of image
-    :type image_size: int
-    :return: resized
-    :rtype: OpenCV image
-    """
-    resized = cv2.resize(image,                                                          # image to resize
-                         (image_size, image_size),                                       # define new image size
-                         interpolation=cv2.INTER_AREA)                                   # used for reducing size
-
-    return resized
-
-
-def get_images(search, num_images=None):
+def download_images_to_bucket(search, num_images=None):
     """
     search for images on ImageNet, write images to s3
 
@@ -127,5 +112,6 @@ def image_search(search_terms, images=1000):
     """
     for search in search_terms:                                                         # iterate over searches
         if search not in os.listdir("images/") or len(os.listdir("images/")) < images:  # ignore populated categories
-            get_images(search, num_images=images)                                       # get the images
+            # get_images(search, num_images=images)                                       # get the images
+            pass
 

@@ -1,3 +1,4 @@
+import os
 import numpy as np
 import boto3
 import botocore
@@ -19,7 +20,7 @@ class S3Bucket:
         """
         connect to s3 instance
         """
-        print("Connecting to: <{}>...".format(self.name))
+        print("Connecting to: {}...".format(self.name))
         s3 = boto3.resource('s3')
         _bucket = s3.Bucket(self.name)
         exists = True
@@ -32,7 +33,7 @@ class S3Bucket:
                 exists = False
 
         if self.printer:
-            print("bucket <{}> exists? {}".format(self.name, exists))
+            print("bucket {} exists? {}".format(self.name, exists))
 
         return _bucket
 
@@ -43,7 +44,7 @@ class S3Bucket:
         :return: a list of s3 objects in the bucket
         :rtype: list
         """
-        print(f"Getting objects in <{self.name}>...")
+        print(f"Getting objects in {self.name}...")
         self.objects = [object for object in self.bucket.objects.all()]
 
         return self.objects
@@ -55,7 +56,7 @@ class S3Bucket:
         :return: self.keys
         :rtype: list
         """
-        print(f"Getting keys in <{self.name}>...")
+        print(f"Getting keys in {self.name}...")
         self.keys = [obj.key for obj in self.objects if obj.key[-1] != '/']
 
         return self.keys
@@ -93,12 +94,17 @@ class S3Bucket:
         try:
             print("\tdownloading from url: ", url)
             image = requests.get(url, stream=True, timeout=3)  # stream image from url
+            file_size = int(image.headers['Content-length'])  # image file size in bytes
+
+            assert file_size > 5e4, print("\t  file size is too small")  # only use files larger than 30kb
+
             self.bucket.put_object(Key=key, Body=image.raw.read(), Tagging=f"object={tag}")  # upload to s3
 
             return True
 
         except:
-            print("image did not save")
+            print("\t  image did not save")
+
             return False
 
     def download_file(self, key, file_name):
@@ -122,8 +128,11 @@ class S3Bucket:
 
 def main():
     bucket = S3Bucket('doodle-bot')
-    filenames = bucket.keys
-    print(len(filenames))
+    objects = bucket.get_objects()
+    print(len(objects))
+
+    for i, obj in enumerate(objects):
+        print(i, obj)
 
 
 if __name__ == "__main__":

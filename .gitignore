@@ -3,7 +3,7 @@
 .idea/
 .DS_Store
 
-images/
+assets/images/
 
 *.xml
 

@@ -23,6 +23,9 @@ class ImageSampler:
 
         self.key_store = None
 
+        self.pos_images = {}
+        self.neg_images = {}
+
     def check_path(self, path):
         dir = os.path.dirname(path)
         if not os.path.exists(dir):
@@ -54,50 +57,52 @@ class ImageSampler:
                     print("File already exists.")
 
     def pull_down_images(self, n=1000):
+        """
+
+        :param n:
+        :type n:
+        :return:
+        :rtype:
+        """
         def read_key(key):
             split = key.split('/')
             return split
 
-        objects = self.source.get_keys()
+        objects = self.source.get_keys()  # TODO(@messiest) this needs to be changed to return a sample
         print(f"{len(objects)} Objects")
-        self.key_store = {}
+
+        np.random.shuffle(objects)
+
+        self.key_store = {}  #
 
         for o in objects:
-            loc, obj, file = read_key(o)
-            if obj not in self.key_store.keys():
-                self.key_store[obj] = []
-            self.key_store[obj].append(file)
-
-        class_1 = []  # TODO(@messiest) convert these to dictionaries
-        class_0 = []
-
-        for j in self.key_store.keys():
-            if j == self.name:
-                for m in self.key_store[j]:
-                    if len(class_1) == n:
-                        break
-                    class_1.append(m)
+            _, obj, file = read_key(o)
+            if obj == self.name:
+                if obj not in self.pos_images.keys():
+                    self.pos_images[obj] = []
+                self.pos_images[obj].append(file)
             else:
-                for m in self.key_store[j]:
-                    if len(class_0) == n:
-                        break
-                    class_0.append(m)
+                if obj not in self.neg_images.keys():
+                    self.neg_images[obj] = []
+                self.neg_images[obj].append(file)
 
-        return class_1, class_0
+        return self.pos_images, self.neg_images
 
 
 def main():
     print("Running sampler.main()...")
     sampler = ImageSampler('corgi', bucket=BUCKET)
 
-    l = build_tree('physical_object.n.01')
+    l = build_tree('dog.n.01')
 
     print(l)
 
     # sampler.gather_images(base=True)
     # sampler.gather_images(base=False)
 
-    sampler.pull_down_images()
+    pos, neg = sampler.pull_down_images()
+    print(pos)
+
     keys = sampler.key_store
     for k in keys.keys():
         print(f"Key: {k}, Files: {len(keys[k])}")
