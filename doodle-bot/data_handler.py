@@ -104,7 +104,7 @@ def main():
     data = get_image_files(10)
     print(data)
     for i in run_session(data, 1):
-        print(i, "###" * 40)
+        print(i, "\n", "###" * 40)
 
 
 if __name__ == "__main__":
