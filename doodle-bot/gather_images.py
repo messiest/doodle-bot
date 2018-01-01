@@ -1,7 +1,7 @@
 import os
 import numpy as np
 
-from imagenet import downloads
+from imagenet import search
 from s3.bucket import S3Bucket
 
 
@@ -20,7 +20,7 @@ def create_image_key(url, obj):
 def main():
     bucket = S3Bucket(BUCKET)  # TODO (@messiest) remove the auto-run for get_keys()/get_objects()
     for obj in CIFAR10:
-        urls = [j for j in downloads.get_image_urls(obj) if os.path.splitext(j)[1] in ['.jpg', '.jpeg']]
+        urls = [j for j in search.get_image_urls(obj) if os.path.splitext(j)[1] in ['.jpg', '.jpeg']]
         np.random.shuffle(urls)  # randomize order
 
         for img_url in urls:
@@ -30,7 +30,7 @@ def main():
 
 if __name__ == "__main__":
     print("Running Downloader...")
-    # main()
+    main()
     bucket = S3Bucket(BUCKET)
     keys = bucket.get_keys()
     for k in keys:
